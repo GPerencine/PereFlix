@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background: #141414;
+}
+
+body {
+  background-color: #141414;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Garante que o grid funcione */
+.grid {
+  display: grid !important;
+}
+/* Remove qualquer comportamento de scroll estranho */
+html {
+  scroll-behavior: smooth;
+}
+/* Remove a barra de scroll feia lateral */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
