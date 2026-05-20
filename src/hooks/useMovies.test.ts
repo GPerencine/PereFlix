@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { useMovies } from '@/hooks/useMovies';
-import { getMovies } from '@/services/tmdb';
+import { getMovies, Movie } from '@/services/tmdb';
 
 jest.mock('@/services/tmdb', () => ({
   getMovies: jest.fn(),
@@ -14,7 +14,7 @@ describe('useMovies', () => {
   });
 
   it('1. Estado inicial (loading: true, movies: [], error: null)', async () => {
-    let resolvePromise: (value: any) => void;
+    let resolvePromise: (value: Movie[]) => void;
     (getMovies as jest.Mock).mockReturnValue(new Promise(resolve => {
       resolvePromise = resolve;
     }));
