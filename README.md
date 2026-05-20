@@ -144,10 +144,12 @@ A cada `push` ou `pull_request` na branch `main`, o GitHub Actions executa autom
 
 1. **Instalação de dependências** — `npm ci`
 2. **Lint** — `npm run lint` (zero erros tolerados)
-3. **Testes** — `npm test` (suite Jest + React Testing Library)
+3. **Testes** — `npm test -- --coverage --ci` (suite Jest + React Testing Library com cobertura mínima de 70%)
 4. **Build de Produção** — `npm run build` (validação final do bundle)
 
 A análise estática de qualidade de código é feita automaticamente pelo **SonarCloud**, garantindo métricas de confiabilidade, duplicação e cobertura dentro dos padrões do Quality Gate.
+
+**Deploy Automático:** O projeto possui integração contínua com a Vercel via GitHub. O deploy para produção ocorre automaticamente após o merge na branch `main`, condicionado ao sucesso da pipeline de CI.
 
 ---
 

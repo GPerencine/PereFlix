@@ -32,41 +32,31 @@ export default function Home() {
   const hasSearchQuery = query.trim().length > 0;
 
   return (
-    <div style={{ backgroundColor: '#141414', minHeight: '100vh', color: 'white', fontFamily: 'Arial, sans-serif', overflowX: 'hidden' }}>
+    <div className="min-h-screen bg-[#141414] text-white font-sans overflow-x-hidden">
       
       {/* Header Fixo */}
-      <header style={{ 
-        padding: '15px 4%', 
-        backgroundColor: isScrolled || hasSearchQuery ? 'black' : 'transparent',
-        backgroundImage: isScrolled || hasSearchQuery ? 'none' : 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)',
-        position: 'fixed', top: 0, width: '100%', zIndex: 1000, transition: '0.4s',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
+      <header className={`px-[4%] py-[15px] fixed top-0 w-full z-[1000] transition-all duration-400 flex items-center justify-between ${
+        isScrolled || hasSearchQuery 
+          ? 'bg-black bg-none' 
+          : 'bg-transparent bg-gradient-to-b from-black/80 to-transparent'
+      }`}>
         <h1 
-          style={{ color: '#E50914', fontSize: '2rem', fontWeight: '900', fontStyle: 'italic', margin: 0, cursor: 'pointer' }}
+          className="text-[#E50914] text-[2rem] font-black italic m-0 cursor-pointer"
           onClick={() => { setQuery(''); setIsSearchExpanded(false); }}
         >
           PEREFLIX
         </h1>
 
         {/* Sleek Search Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="flex items-center gap-2.5">
           <div 
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              border: isSearchExpanded ? '1px solid #ccc' : '1px solid transparent', 
-              padding: '5px 10px', 
-              borderRadius: '4px',
-              backgroundColor: isSearchExpanded ? 'rgba(0,0,0,0.7)' : 'transparent',
-              transition: 'all 0.3s ease'
-            }}
+            className={`flex items-center px-2.5 py-1.5 rounded transition-all duration-300 ${
+              isSearchExpanded ? 'border-[#ccc] border bg-black/70' : 'border-transparent border bg-transparent'
+            }`}
           >
             <span 
               onClick={() => setIsSearchExpanded(!isSearchExpanded)} 
-              style={{ cursor: 'pointer', fontSize: '1.2rem', marginRight: '5px', userSelect: 'none' }}
+              className="cursor-pointer text-[1.2rem] mr-[5px] select-none"
               aria-label="Search"
             >
               🔍
@@ -76,22 +66,15 @@ export default function Home() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Títulos, pessoas, gêneros..."
-              style={{
-                width: isSearchExpanded ? '200px' : '0px',
-                opacity: isSearchExpanded ? 1 : 0,
-                border: 'none',
-                backgroundColor: 'transparent',
-                color: 'white',
-                outline: 'none',
-                transition: 'all 0.3s ease',
-                fontSize: '0.9rem'
-              }}
+              className={`border-none bg-transparent text-white outline-none transition-all duration-300 text-[0.9rem] ${
+                isSearchExpanded ? 'w-[200px] opacity-100' : 'w-0 opacity-0'
+              }`}
               disabled={!isSearchExpanded}
             />
             {isSearchExpanded && query && (
               <span 
                 onClick={() => setQuery('')}
-                style={{ cursor: 'pointer', color: '#aaa', fontSize: '0.8rem', marginLeft: '5px' }}
+                className="cursor-pointer text-[#aaa] text-[0.8rem] ml-[5px]"
               >
                 ✕
               </span>
@@ -102,28 +85,28 @@ export default function Home() {
 
       {hasSearchQuery ? (
         /* Search Results Content */
-        <main style={{ paddingTop: '100px', paddingLeft: '4%', paddingRight: '4%', minHeight: '80vh' }}>
-          <h2 style={{ fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '25px' }}>
+        <main className="pt-[100px] px-[4%] min-h-[80vh]">
+          <h2 className="text-[1.8rem] font-bold mb-[25px]">
             Resultados para &quot;{query}&quot;
           </h2>
 
           {searchError && (
-            <div style={{ textAlign: 'center', padding: '50px 0' }}>
-              <p style={{ color: '#E50914' }}>Ocorreu um erro ao buscar filmes.</p>
-              <p style={{ color: '#aaa' }}>{searchError.message}</p>
+            <div className="text-center py-[50px]">
+              <p className="text-[#E50914]">Ocorreu um erro ao buscar filmes.</p>
+              <p className="text-[#aaa]">{searchError.message}</p>
             </div>
           )}
 
           {searchLoading ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '20px', paddingBottom: '50px' }}>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-5 pb-[50px]">
               {Array.from({ length: 12 }).map((_, i) => (
-                <div key={`search-skeleton-${i}`} style={{ flex: '0 0 auto', width: '100%' }} className="animate-pulse">
-                  <div style={{ position: 'relative', aspectRatio: '2/3', borderRadius: '6px', backgroundColor: '#262626' }} />
+                <div key={`search-skeleton-${i}`} className="flex-none w-full animate-pulse">
+                  <div className="relative aspect-[2/3] rounded-md bg-[#262626]" />
                 </div>
               ))}
             </div>
           ) : searchResults.length > 0 ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '20px', paddingBottom: '50px' }}>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-5 pb-[50px]">
               {searchResults.map((movie) => (
                 <MovieCard 
                   key={movie.id} 
@@ -133,9 +116,9 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div style={{ textAlign: 'center', padding: '100px 20px', color: '#808080' }}>
-              <p style={{ fontSize: '1.2rem', marginBottom: '10px' }}>Nenhum filme encontrado para &quot;{query}&quot;.</p>
-              <p style={{ fontSize: '0.9rem' }}>Tente pesquisar por outros termos ou verifique a grafia.</p>
+            <div className="text-center py-[100px] px-5 text-[#808080]">
+              <p className="text-[1.2rem] mb-2.5">Nenhum filme encontrado para &quot;{query}&quot;.</p>
+              <p className="text-[0.9rem]">Tente pesquisar por outros termos ou verifique a grafia.</p>
             </div>
           )}
         </main>
@@ -144,36 +127,36 @@ export default function Home() {
         <>
           {/* Hero Banner Adaptável */}
           {trendingLoading && !featuredMovie ? (
-            <section style={{ 
-              height: '80vh', width: '100%', 
-              backgroundColor: '#1c1c1c',
-              display: 'flex', alignItems: 'center', padding: '0 4%'
-            }} className="animate-pulse">
-              <div style={{ width: '100%', maxWidth: '700px' }}>
-                <div style={{ height: '50px', width: '60%', backgroundColor: '#262626', borderRadius: '8px', marginBottom: '20px' }} />
-                <div style={{ height: '20px', width: '100%', backgroundColor: '#262626', borderRadius: '4px', marginBottom: '10px' }} />
-                <div style={{ height: '20px', width: '80%', backgroundColor: '#262626', borderRadius: '4px', marginBottom: '25px' }} />
-                <div style={{ height: '40px', width: '150px', backgroundColor: '#262626', borderRadius: '4px' }} />
+            <section className="h-[80vh] w-full bg-[#1c1c1c] flex items-center px-[4%] animate-pulse">
+              <div className="w-full max-w-[700px]">
+                <div className="h-[50px] w-[60%] bg-[#262626] rounded-lg mb-5" />
+                <div className="h-[20px] w-full bg-[#262626] rounded mb-2.5" />
+                <div className="h-[20px] w-[80%] bg-[#262626] rounded mb-[25px]" />
+                <div className="h-[40px] w-[150px] bg-[#262626] rounded" />
               </div>
             </section>
           ) : (
             featuredMovie && (
-              <section style={{ 
-                height: '80vh', width: '100%', 
-                backgroundImage: `linear-gradient(to top, #141414 10%, transparent 90%), linear-gradient(to right, rgba(0,0,0,0.7), transparent), url(https://image.tmdb.org/t/p/original${featuredMovie.backdrop_path})`,
-                backgroundSize: 'cover', backgroundPosition: 'center',
-                display: 'flex', alignItems: 'center', padding: '0 4%'
-              }}>
-                <div style={{ maxWidth: '700px', marginTop: '50px' }}>
-                  <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 'bold', lineHeight: '1.1', marginBottom: '20px' }}>
+              <section 
+                className="h-[80vh] w-full bg-cover bg-center flex items-center px-[4%]"
+                style={{ 
+                  backgroundImage: `linear-gradient(to top, #141414 10%, transparent 90%), linear-gradient(to right, rgba(0,0,0,0.7), transparent), url(https://image.tmdb.org/t/p/original${featuredMovie.backdrop_path})`
+                }}
+              >
+                <div className="max-w-[700px] mt-[50px]">
+                  <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1.1] mb-5">
                     {featuredMovie.title || featuredMovie.name}
                   </h1>
-                  <p style={{ fontSize: '1.1rem', marginBottom: '25px', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                  <p 
+                    className="text-[1.1rem] mb-[25px] line-clamp-3"
+                    style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
+                  >
                     {featuredMovie.overview}
                   </p>
                   <button 
                     onClick={() => setSelectedMovie(featuredMovie)}
-                    style={{ padding: '12px 35px', backgroundColor: 'white', color: 'black', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>
+                    className="px-[35px] py-3 bg-white text-black border-none rounded font-bold cursor-pointer text-[1.1rem]"
+                  >
                     ⓘ Mais Informações
                   </button>
                 </div>
@@ -182,7 +165,7 @@ export default function Home() {
           )}
 
           {/* Listas de Filmes */}
-          <main style={{ marginTop: featuredMovie ? '-100px' : '20px', position: 'relative', zIndex: 10, paddingBottom: '50px' }}>
+          <main className="relative z-10 pb-[50px]" style={{ marginTop: featuredMovie ? '-100px' : '20px' }}>
             <MovieRow 
               title="Tendências" 
               movies={trending} 
@@ -219,7 +202,7 @@ export default function Home() {
         </>
       )}
 
-      <footer style={{ padding: '50px 0', textAlign: 'center', color: '#808080', fontSize: '14px' }}>
+      <footer className="py-[50px] text-center text-[#808080] text-sm">
         © 2026 PereFlix - Criado por Gabriel Perencine
       </footer>
 
