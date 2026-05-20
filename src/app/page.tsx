@@ -35,7 +35,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#141414] text-white font-sans overflow-x-hidden">
       
       {/* Header Fixo */}
-      <header className={`px-[4%] py-[15px] fixed top-0 w-full z-[1000] transition-all duration-400 flex items-center justify-between ${
+      <header className={`px-[4%] py-[15px] fixed top-0 w-full z-[1000] transition-all duration-500 flex items-center justify-between ${
         isScrolled || hasSearchQuery 
           ? 'bg-black bg-none' 
           : 'bg-transparent bg-gradient-to-b from-black/80 to-transparent'
