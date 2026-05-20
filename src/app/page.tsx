@@ -40,12 +40,13 @@ export default function Home() {
           ? 'bg-black bg-none' 
           : 'bg-transparent bg-gradient-to-b from-black/80 to-transparent'
       }`}>
-        <h1 
-          className="text-[#E50914] text-[2rem] font-black italic m-0 cursor-pointer"
+        <button 
+          className="text-[#E50914] text-[2rem] font-black italic m-0 cursor-pointer bg-transparent border-none p-0 text-left"
           onClick={() => { setQuery(''); setIsSearchExpanded(false); }}
+          type="button"
         >
           PEREFLIX
-        </h1>
+        </button>
 
         {/* Sleek Search Bar */}
         <div className="flex items-center gap-2.5">
@@ -54,13 +55,14 @@ export default function Home() {
               isSearchExpanded ? 'border-[#ccc] border bg-black/70' : 'border-transparent border bg-transparent'
             }`}
           >
-            <span 
+            <button 
               onClick={() => setIsSearchExpanded(!isSearchExpanded)} 
-              className="cursor-pointer text-[1.2rem] mr-[5px] select-none"
+              className="cursor-pointer text-[1.2rem] mr-[5px] select-none bg-transparent border-none p-0"
               aria-label="Search"
+              type="button"
             >
               🔍
-            </span>
+            </button>
             <input 
               type="text"
               value={query}
@@ -72,12 +74,14 @@ export default function Home() {
               disabled={!isSearchExpanded}
             />
             {isSearchExpanded && query && (
-              <span 
+              <button 
                 onClick={() => setQuery('')}
-                className="cursor-pointer text-[#aaa] text-[0.8rem] ml-[5px]"
+                className="cursor-pointer text-[#aaa] text-[0.8rem] ml-[5px] bg-transparent border-none p-0"
+                aria-label="Limpar busca"
+                type="button"
               >
                 ✕
-              </span>
+              </button>
             )}
           </div>
         </div>

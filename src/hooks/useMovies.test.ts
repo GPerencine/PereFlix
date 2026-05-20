@@ -70,9 +70,9 @@ describe('useMovies', () => {
     rerender({ endpoint: 'endpoint-2' });
 
     await waitFor(() => {
-      // after rerender, it should fetch again
-      expect(getMovies).toHaveBeenCalledTimes(2);
+      expect(result.current.loading).toBe(false);
     });
+    expect(getMovies).toHaveBeenCalledTimes(2);
     expect(getMovies).toHaveBeenCalledWith('endpoint-2');
   });
 });
