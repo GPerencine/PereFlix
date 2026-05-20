@@ -14,10 +14,7 @@ describe('useMovies', () => {
   });
 
   it('1. Estado inicial (loading: true, movies: [], error: null)', async () => {
-    let resolvePromise: (value: Movie[]) => void = () => {};
-    (getMovies as jest.Mock).mockReturnValue(new Promise(resolve => {
-      resolvePromise = resolve;
-    }));
+    (getMovies as jest.Mock).mockResolvedValue([]);
 
     const { result } = renderHook(() => useMovies('test-endpoint'));
 
@@ -25,8 +22,6 @@ describe('useMovies', () => {
     expect(result.current.movies).toEqual([]);
     expect(result.current.error).toBeNull();
 
-    // Resolve to allow test to finish gracefully
-    resolvePromise([]);
     await waitFor(() => expect(result.current.loading).toBe(false));
   });
 
