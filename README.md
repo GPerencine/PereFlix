@@ -1,158 +1,112 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/TMDB_API-01B4E4?style=for-the-badge&logo=themoviedatabase&logoColor=white" alt="TMDB API" />
-  <img src="https://img.shields.io/badge/SonarCloud-F3702A?style=for-the-badge&logo=sonarcloud&logoColor=white" alt="SonarCloud" />
+
+# 🎬 PereFlix
+
+<p>
+  <img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/TMDB_API-01B4E4?style=for-the-badge&logo=themoviedatabase&logoColor=white" />
+  <img src="https://img.shields.io/badge/SonarCloud-F3702A?style=for-the-badge&logo=sonarcloud&logoColor=white" />
+</p>
+
+**Clone moderno da Netflix com catálogo em tempo real via TMDB API, busca com debounce e skeleton loading.**
+
+[🌐 Acessar aplicação](https://pereflix.vercel.app/)
+
 </div>
 
-<h1 align="center">🎬 PereFlix</h1>
-<p align="center">
-  <strong>Clone moderno e responsivo da Netflix com integração à API do TMDB</strong>
-</p>
-<p>
-  <strong>Autor:</strong> Gabriel Perencine Lima
-</p>
-<p align="center">
-  <a href="https://pereflix.vercel.app/">Site Oficial PereFlix</a>
-</p>
+---
+<div align="center">
+  Desenvolvido por <strong>Gabriel Perencine Lima</strong>
+</div>
+
+## Sobre
+
+PereFlix é uma aplicação de streaming inspirada na interface da Netflix, construída para demonstrar boas práticas de engenharia de software em um produto visual de alta fidelidade. O projeto consome a **TMDB API** para exibir filmes e séries em tempo real, com busca inteligente, carregamento progressivo e tratamento resiliente de erros por seção.
+
+A arquitetura segue separação estrita de responsabilidades: custom hooks isolam toda a lógica de estado e requisições HTTP, enquanto os componentes são puramente visuais e reutilizáveis.
 
 ---
 
-## 🚀 Visão Geral
+## Funcionalidades
 
-O **PereFlix** é uma aplicação web de streaming inspirada na interface da Netflix, construída com as tecnologias mais modernas do ecossistema JavaScript. O projeto consome a API oficial do **TMDB (The Movie Database)** para exibir filmes e séries em tempo real, com busca inteligente, carregamento progressivo e tratamento de erros resiliente por seção de conteúdo.
-
-O objetivo central foi aplicar boas práticas de engenharia de software — arquitetura desacoplada, CI/CD automatizado, qualidade de código via análise estática e acessibilidade — em um projeto de portfólio de alto nível.
-
----
-
-## ✨ Features Principais
-
-- 🎥 **Catálogo Dinâmico:** Listagem de filmes e séries por categoria diretamente da API do TMDB em tempo real.
-- 🔍 **Busca Inteligente com Debounce:** Barra de busca com expansão dinâmica e debounce de `400ms`, reduzindo até 80% das chamadas redundantes à API.
-- 🎞️ **Modal de Detalhes:** Visualização de sinopse, nota de relevância e ano de lançamento em modal elegante com backdrop fullscreen.
-- 💀 **Skeleton Loading (Shimmer):** Cards e fileiras de skeleton animados para carregamento progressivo, eliminando telas em branco.
-- 🛡️ **Tratamento de Erros Resiliente:** Componente `ApiErrorFallback` por seção com opção de re-tentativa, impedindo que erros de rede quebrem a aplicação.
-- ♿ **Acessibilidade (A11y):** Todos os elementos interativos possuem `role`, `tabIndex` e suporte a teclado (`Enter` / `Space` / `Escape`).
-- 📱 **Interface Responsiva:** Layout adaptado para desktop, tablet e mobile com Tailwind CSS v4.
+| Feature | Descrição |
+|---|---|
+| 🎥 Catálogo Dinâmico | Filmes e séries por categoria, consumidos em tempo real da TMDB API |
+| 🔍 Busca com Debounce | Expansão dinâmica com debounce de 400ms — reduz ~80% das chamadas à API |
+| 🎞️ Modal de Detalhes | Sinopse, nota e ano de lançamento com backdrop fullscreen |
+| 💀 Skeleton Loading | Cards e fileiras animados — sem telas em branco durante o carregamento |
+| 🛡️ Error Boundary por Seção | `ApiErrorFallback` com retry — erros de rede não quebram o restante da página |
+| ♿ Acessibilidade | `role`, `tabIndex` e navegação por teclado (`Enter` / `Space` / `Escape`) |
+| 📱 Responsivo | Layout adaptado para desktop, tablet e mobile |
 
 ---
 
-## 🛠️ Tecnologias
+## Stack
 
-A aplicação foi construída com as tecnologias mais modernas do mercado:
-
-- **Frontend:** Next.js 16.1.6 (App Router), React 19, TypeScript 5, Tailwind CSS v4.
-- **Integração de Dados:** TMDB REST API com camada de serviço isolada (`src/services/tmdb.ts`).
-- **Custom Hooks:** `useMovies`, `useSearch` e `useDebounce` para separação total de lógica de estado e apresentação.
-- **Qualidade & CI/CD:** ESLint 9, Jest 30, React Testing Library 16, GitHub Actions (Integração Contínua), SonarCloud (Análise Estática).
+| Camada | Tecnologia |
+|---|---|
+| **Framework** | Next.js (App Router), React 19, TypeScript 5 |
+| **Estilo** | Tailwind CSS v4 |
+| **Dados** | TMDB REST API — camada isolada em `src/services/tmdb.ts` |
+| **State / Lógica** | Custom Hooks: `useMovies`, `useSearch`, `useDebounce` |
+| **Testes** | Jest, React Testing Library |
+| **Qualidade / Deploy** | ESLint 9, SonarCloud, GitHub Actions, Vercel |
 
 ---
 
-## 🏛️ Arquitetura e Engenharia
-
-O projeto adota separação estrita de responsabilidades inspirada no padrão **Model-View-Controller (MVC) para React moderno**:
-
-- **Model (Dados):** Tipos e contratos da API centralizados em `src/services/tmdb.ts`.
-- **View (Interface):** Componentes atômicos, acessíveis e reutilizáveis em `src/components/` (`MovieCard`, `MovieRow`, `MovieModal`, `MovieCardSkeleton`, `ApiErrorFallback`).
-- **Controller (Regras de Negócio):** Custom Hooks em `src/hooks/` abstraem completamente as requisições HTTP e estados assíncronos dos componentes visuais.
-- **Segurança:** Chaves de API mantidas em `.env` local (nunca versionadas), com `.env.example` como referência documentada.
-
-### Diagrama de Arquitetura
+## Arquitetura
 
 ```mermaid
 graph TD
-  User[Usuário] --> Page[page.tsx - App Router]
-  Page --> useMovies[useMovies Hook]
-  Page --> useSearch[useSearch Hook]
+  User[Usuário] --> Page[page.tsx — App Router]
+  Page --> useMovies[useMovies]
+  Page --> useSearch[useSearch]
   useMovies --> TMDB[TMDB REST API]
   useSearch --> TMDB
-  Page --> MovieRow[MovieRow Component]
-  MovieRow --> MovieCard[MovieCard Component]
-  Page --> MovieModal[MovieModal Component]
-  Page --> ApiErrorFallback[ApiErrorFallback Component]
+  Page --> MovieRow[MovieRow]
+  MovieRow --> MovieCard[MovieCard]
+  Page --> MovieModal[MovieModal]
+  Page --> ApiErrorFallback[ApiErrorFallback]
 ```
 
 ---
 
-## ⚙️ Como Rodar Localmente
+## Configuração Local
 
-### 1. Pré-requisitos
-
-- Node.js 18+ instalado.
-- Chave de API gratuita do [TMDB (The Movie Database)](https://www.themoviedb.org/settings/api).
-
-### 2. Instalação
+**Pré-requisito:** Node.js 18+ e chave gratuita do [TMDB](https://www.themoviedb.org/settings/api).
 
 ```bash
-# Clone o repositório
 git clone https://github.com/GPerencine/PereFlix.git
 cd PereFlix
-
-# Instale as dependências
 npm install
-```
-
-### 3. Variáveis de Ambiente
-
-Crie um arquivo `.env` na raiz do projeto com base no `.env.example`:
-
-```bash
 cp .env.example .env
 ```
 
-Preencha com suas credenciais:
+Preencha `.env`:
 
 ```env
-# Chave de API do TMDB (obrigatória)
-NEXT_PUBLIC_TMDB_API_KEY="sua-chave-tmdb"
-NEXT_PUBLIC_TMDB_BASE_URL="https://api.themoviedb.org/3"
+NEXT_PUBLIC_TMDB_API_KEY=sua-chave-tmdb
+NEXT_PUBLIC_TMDB_BASE_URL=https://api.themoviedb.org/3
 ```
 
-### 4. Executando o Projeto
-
 ```bash
-# Inicie o servidor de desenvolvimento
-npm run dev
-```
-
-Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
-
-### 5. Executando os Testes Automatizados
-
-```bash
-npm test
-```
-
-### 6. Verificando a Qualidade de Código
-
-```bash
-# Verificação de linting
-npm run lint
-
-# Build de produção
-npm run build
+npm run dev     # http://localhost:3000
+npm test        # Suíte de testes
+npm run build   # Validação do bundle de produção
 ```
 
 ---
 
-## 🧪 Pipeline de CI/CD
+## CI/CD
 
-A cada `push` ou `pull_request` na branch `main`, o GitHub Actions executa automaticamente:
+A cada push ou PR na `main`, o GitHub Actions executa:
 
-1. **Instalação de dependências** — `npm ci`
-2. **Lint** — `npm run lint` (zero erros tolerados)
-3. **Testes** — `npm test -- --coverage --ci` (suite Jest + React Testing Library com cobertura mínima de 70%)
-4. **Build de Produção** — `npm run build` (validação final do bundle)
+1. `npm ci` — instalação determinística
+2. `npm run lint` — zero erros tolerados
+3. `npm test -- --coverage --ci` — cobertura mínima de 70%
+4. `npm run build` — validação do bundle de produção
 
-A análise estática de qualidade de código é feita automaticamente pelo **SonarCloud**, garantindo métricas de confiabilidade, duplicação e cobertura dentro dos padrões do Quality Gate.
-
-**Deploy Automático:** O projeto possui integração contínua com a Vercel via GitHub. O deploy para produção ocorre automaticamente após o merge na branch `main`, condicionado ao sucesso da pipeline de CI.
-
----
-
-<p align="center">
-  Feito com dedicação para demonstrar engenharia de software moderna aplicada a produtos reais. 🚀
-</p>
+O SonarCloud realiza análise estática com Quality Gate integrado. O deploy para produção na Vercel ocorre automaticamente após o merge na `main`.
